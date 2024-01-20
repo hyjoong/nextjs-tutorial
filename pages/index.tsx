@@ -98,6 +98,5 @@ export const getStaticProps = async () => {
       categories: conCategory1s,
       conItems: conItems,
     },
-    revalidate: 604800,
   };
 };
