@@ -1,0 +1,9 @@
+.brandList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
