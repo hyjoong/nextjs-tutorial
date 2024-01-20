@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## [리액트 딥다이브 스터디](https://github.com/diving-react/study-react-deepdive/tree/master) 4장 서버사이드 렌더링 프로젝트
 
-## Getting Started
+## 프로젝트 목적
 
-First, run the development server:
+### 1. 실전 경험으로 서버사이드 렌더링 이해
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+프로젝트를 통해 Next.js의 SSR, SSG, ISR, On-Demand Revalidation 방식을 직접 적용하며 서버사이드 렌더링에 대해 이해한다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 토론글 실습
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+4장 [토론](https://github.com/diving-react/study-react-deepdive/discussions)에 작성된 토론글에 대해 실습하여 스터디 시간에 의견을 나누고 공유한다.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [언제 SSR, SSG, ISR방식을 사용할까?](https://github.com/diving-react/study-react-deepdive/discussions/51)
+- [Next.js에서 next/image을 사용하는게 좋을까?](https://github.com/diving-react/study-react-deepdive/discussions/53)
+- [Next.js에서 next/link를 사용하는게 좋을까?](https://github.com/diving-react/study-react-deepdive/discussions/52)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## ⚠️ 주의 사항
 
-## Learn More
+- 루트 경로에 `.env.local`파일을 생성하고 스터디 채팅 방에 공유드린 API키를 추가해주세요
 
-To learn more about Next.js, take a look at the following resources:
+  ```javascript
+  // .env.local
+  NEXT_PUBLIC_BASE_URL = "https://apiKey";
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 해당 프로젝트는 Next.js 14버전으로 설정됐습니다. Next.js 13버전부터 next/image의 성능이 개선되어 12버전에서 사용하는 next/image를 사용하고 싶으면 `LegacyImage` 을 이용하세요
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  ```javascript
+  ❌  // next js 14버전의 next/image
+  import Image from "next/image";
 
-## Deploy on Vercel
+  ✅  // next js 12버전의 next/image
+  import LegacyImage from "next/legacy/image";
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- next/link의 prefetch는 production 환경에서만 작동하기 때문에 개발 환경이 아닌 prod에서 실행해 주세요.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ```javascript
+  ❌
+  yarn dev
+
+  ✅
+  yarn build
+  yarn start
+  ```
