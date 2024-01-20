@@ -12,8 +12,9 @@ export interface IProps {
 
 const BrandPage = ({ brandData }: IProps) => {
   return (
+    // TODO: error handling (brandData가 없을 경우 error page로 이동 임시로 옵셔널 체이닝 사용)
     <div>
-      {brandData.conItems.map((brand) => {
+      {brandData?.conItems?.map((brand) => {
         return (
           <div key={brand.id}>
             <Image
